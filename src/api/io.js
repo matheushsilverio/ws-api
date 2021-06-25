@@ -1,25 +1,29 @@
-const SocketEvents = require("./constant/SocketEvents");
+import SocketEvents from "./constant/SocketEvents";
+import socketIo from "socket.io";
+import Matches from "./io-stream/matches";
+import Logger from "./logger";
 
-let round = 1;
-
-module.exports = (server) => {
-  const io = require("socket.io")(server, {
-    cors: {
-      origin: "http://localhost:8080",
-      methods: ["GET", "POST"],
-      credentials: true,
-    },
-  });
-  io.on(SocketEvents.CONNECT, (socket) => {
-    console.log("Socket connected");
-
-    socket.on(SocketEvents.CONNECT, () => {
-      console.log("Socket disconnect");
+export default class Io {
+  constructor(serverInstance) {
+    this.io = new socketIo.Server(serverInstance, {
+      cors: {
+        origin: process.env.APP_URL,
+        methods: ["GET", "POST"],
+        credentials: true,
+      },
     });
+  }
 
-    socket.on(SocketEvents.ROUND_CHANGE, () => {
-      round += 1;
-      console.log(`round ${round}`);
+  createConnection() {
+    Logger.log("io", `Starting socket.io`);
+    this.io.on(SocketEvents.CONNECT, (socket) => {
+      Logger.log("io", `new connection ${socket.id}`);
+
+      Matches.start(socket);
     });
-  });
-};
+  }
+
+  close() {
+    this.io.close();
+  }
+}
