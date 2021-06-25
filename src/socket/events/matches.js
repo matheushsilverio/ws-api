@@ -1,5 +1,5 @@
-import SocketEvents from "../constant/SocketEvents";
-import { updateMatches } from "./services/macthesServices";
+import SocketEvents from "../../../constants";
+import { updateMatches } from "../services/macthesServices";
 
 export default class Matches {
   static start(socket) {

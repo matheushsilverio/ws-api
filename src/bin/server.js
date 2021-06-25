@@ -1,7 +1,7 @@
-import App from "./app";
-import Io from "./io";
+import App from "../api/app";
+import Io from "../socket/io";
 import http from "http";
-import Logger from "./logger";
+import Logger from "../helpers/logger";
 
 class Server {
   static start() {

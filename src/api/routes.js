@@ -7,4 +7,8 @@ routes.use(
   )
 );
 
+// Tournaments Routes
+import TournamentsControler from "./controllers/tournamentsController";
+routes.post("/tournaments", TournamentsControler.create);
+
 module.exports = routes;

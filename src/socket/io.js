@@ -1,7 +1,7 @@
-import SocketEvents from "./constant/SocketEvents";
+import SocketEvents from "../../constants";
 import socketIo from "socket.io";
-import Matches from "./io-stream/matches";
-import Logger from "./logger";
+import Matches from "./events/matches";
+import Logger from "../helpers/logger";
 
 export default class Io {
   constructor(serverInstance) {
