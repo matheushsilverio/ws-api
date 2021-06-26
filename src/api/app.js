@@ -3,12 +3,16 @@ import express from "express";
 import cors from "cors";
 import Logger from "../helpers/logger";
 import Middlewares from "./middlewares/responses";
+import Router from "./routes";
 
 export default class App {
+  constructor(Database) {
+    this.routes = new Router(Database);
+  }
+
   start() {
     Logger.log("web-server", "Starting core configuration");
 
-    const routes = require("./routes");
     const app = express();
 
     app.use(cors());
@@ -16,7 +20,7 @@ export default class App {
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
     app.use(Middlewares);
-    app.use(routes);
+    app.use(this.routes.start());
 
     Logger.log("web-server", "Core configuration done");
     return app;

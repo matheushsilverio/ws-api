@@ -1,14 +1,17 @@
-import Services from "../services/tournamentsServices";
+import TournamentsServices from "../services/tournamentsServices";
 
-class TournamentController {
-  static async create(request, response) {
+export default class TournamentController {
+  constructor(Database, Services) {
+    const ServicesDependecie = Services || TournamentsServices;
+    this.services = new ServicesDependecie(Database);
+  }
+
+  async create(request, response) {
     try {
-      const tournamentCreated = await Services.create(request);
+      const tournamentCreated = await this.services.create(request);
       response.successCreated(tournamentCreated);
     } catch (err) {
       response.error(err.message);
     }
   }
 }
-
-export default TournamentController;

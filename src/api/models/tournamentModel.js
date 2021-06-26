@@ -1,7 +1,7 @@
-import InterfaceModel from "@database/interfaceModel";
+import BaseModel from "@database/baseModel";
 
-export default class TournamentsModel extends InterfaceModel {
-  constructor() {
-    super("tournaments");
+export default class TournamentsModel extends BaseModel {
+  constructor(Database) {
+    super("tournaments", Database);
   }
 }

@@ -1,14 +1,18 @@
-const routes = require("express").Router();
-const logger = require("morgan");
+const express = require("express");
+import TournamentRouter from "./routes/tournamentRouter";
+import StagesRouter from "./routes/stagesRouter";
 
-routes.use(
-  logger(
-    "[debug] :date[web] | :method :url :status - content-length :res[content-length] - :response-time ms"
-  )
-);
+export default class Router {
+  constructor(Database) {
+    this.Router = express.Router();
+    this.tournaments = new TournamentRouter(Database);
+    this.stages = new StagesRouter(Database);
+  }
 
-// Tournaments Routes
-import TournamentsControler from "./controllers/tournamentsController";
-routes.post("/tournaments", TournamentsControler.create);
+  start() {
+    this.Router.use("/tournaments", this.tournaments.getRoutes());
+    this.Router.use("/stages", this.stages.getRoutes());
 
-module.exports = routes;
+    return this.Router;
+  }
+}
