@@ -1,7 +1,7 @@
-// import Database from "./database";
+import Database from "./database";
 
 export default class baseModel {
-  constructor(collection, Database) {
+  constructor(collection) {
     this.database = Database.createConnection();
     this.collection = collection;
   }

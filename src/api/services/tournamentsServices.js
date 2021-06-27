@@ -1,8 +1,8 @@
 import TournamentsModel from "../models/tournamentModel";
 
 export default class TournamentsServices {
-  constructor(Database) {
-    this.model = new TournamentsModel(Database);
+  constructor() {
+    this.model = new TournamentsModel();
   }
   async create(request) {
     const { tournament } = request.body;

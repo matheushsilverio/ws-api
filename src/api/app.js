@@ -6,8 +6,8 @@ import Middlewares from "./middlewares/responses";
 import Router from "./routes";
 
 export default class App {
-  constructor(Database) {
-    this.routes = new Router(Database);
+  constructor() {
+    this.routes = new Router();
   }
 
   start() {

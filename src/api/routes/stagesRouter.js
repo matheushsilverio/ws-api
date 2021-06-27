@@ -2,9 +2,8 @@ import BaseRouter from "./baseRouter";
 import StagesController from "../controllers/stagesController";
 
 export default class StagesRouter extends BaseRouter {
-  constructor(Database, Controller) {
-    const ControllerDependecie = Controller || StagesController;
-    super(Database, ControllerDependecie);
+  constructor() {
+    super(StagesController);
   }
 
   getRoutes() {

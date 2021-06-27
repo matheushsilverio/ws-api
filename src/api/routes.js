@@ -3,10 +3,10 @@ import TournamentRouter from "./routes/tournamentRouter";
 import StagesRouter from "./routes/stagesRouter";
 
 export default class Router {
-  constructor(Database) {
+  constructor() {
     this.Router = express.Router();
-    this.tournaments = new TournamentRouter(Database);
-    this.stages = new StagesRouter(Database);
+    this.tournaments = new TournamentRouter();
+    this.stages = new StagesRouter();
   }
 
   start() {

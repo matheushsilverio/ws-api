@@ -2,11 +2,10 @@ import App from "../api/app";
 import Io from "../socket/io";
 import http from "http";
 import Logger from "../helpers/logger";
-import Database from "../db/database";
 class Server {
-  static start(database) {
+  static start() {
     const port = 3000;
-    const app = new App(database);
+    const app = new App();
     const httpServer = http.createServer(app.start());
 
     httpServer.listen(process.env.PORT || port, () => {
@@ -21,4 +20,4 @@ class Server {
   }
 }
 
-Server.start(Database);
+Server.start();

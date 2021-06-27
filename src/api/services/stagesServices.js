@@ -1,8 +1,8 @@
 import StagesModel from "../models/stagesModel";
 
 export default class StageServices {
-  constructor(Database) {
-    this.model = new StagesModel(Database);
+  constructor() {
+    this.model = new StagesModel();
   }
 
   async create(request) {

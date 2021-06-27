@@ -2,9 +2,8 @@ import BaseRouter from "./baseRouter";
 import TournamentsController from "../controllers/tournamentsController";
 
 export default class TournamentRouter extends BaseRouter {
-  constructor(Database, Controller = null) {
-    const ControllerDependecie = Controller || TournamentsController;
-    super(Database, ControllerDependecie);
+  constructor() {
+    super(TournamentsController);
   }
 
   getRoutes() {
